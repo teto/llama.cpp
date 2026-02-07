@@ -18,13 +18,13 @@
         lib.pipe (config.packages) [
           (lib.concatMapAttrs (
             name: package: {
-              ${name} = pkgs.mkShell {
-                name = "${name}";
-                inputsFrom = [ package ];
-                shellHook = ''
-                  echo "Entering ${name} devShell"
-                '';
-              };
+              # ${name} = pkgs.mkShell {
+              #   name = "${name}";
+              #   inputsFrom = [ package ];
+              #   shellHook = ''
+              #     echo "Entering ${name} devShell"
+              #   '';
+              # };
               "${name}-extra" =
                 if (name == "python-scripts") then
                   null
