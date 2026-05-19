@@ -2974,6 +2974,15 @@ private:
                         // TODO: try to terminate only the largest active slot/sequence and continue with the rest
                         //       need to remove the tokens from the current batch too
                         err = "Context size has been exceeded.";
+
+                        for (const auto & slot : slots) {
+                            if (batch.n_seq_id[i] > 0 && slot.id == batch.seq_id[i][0]) {
+                                const int32_t n_exceeded = std::max<int32_t>(batch.pos[i] + 1 - slot.n_ctx, 1);
+
+                                err = string_format("Context size has been exceeded by %d tokens.", n_exceeded);
+                                break;
+                            }
+                        }
                     }
 
                     if (ret == -1) {
