@@ -42,7 +42,7 @@
   effectiveStdenv ? if useCuda then cudaPackages.backendStdenv else stdenv,
   enableStatic ? effectiveStdenv.hostPlatform.isStatic,
   precompileMetalShaders ? false,
-  useWebUi ? true,
+  useWebUi ? false,
 }:
 
 let
